@@ -1,0 +1,142 @@
+images {
+  image: "/assets/game/gfx/dot.png"
+}
+images {
+  image: "/assets/game/gfx/activetile.png"
+}
+animations {
+  id: "zombie-idle"
+  images {
+    image: "/assets/game/gfx/zombie/big_zombie_idle_anim_f0.png"
+  }
+  images {
+    image: "/assets/game/gfx/zombie/big_zombie_idle_anim_f1.png"
+  }
+  images {
+    image: "/assets/game/gfx/zombie/big_zombie_idle_anim_f2.png"
+  }
+  images {
+    image: "/assets/game/gfx/zombie/big_zombie_idle_anim_f3.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 12
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "zombie-run"
+  images {
+    image: "/assets/game/gfx/zombie/big_zombie_run_anim_f0.png"
+  }
+  images {
+    image: "/assets/game/gfx/zombie/big_zombie_run_anim_f1.png"
+  }
+  images {
+    image: "/assets/game/gfx/zombie/big_zombie_run_anim_f2.png"
+  }
+  images {
+    image: "/assets/game/gfx/zombie/big_zombie_run_anim_f3.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 12
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "chort_idle"
+  images {
+    image: "/assets/game/gfx/chort/chort_idle_anim_f0.png"
+  }
+  images {
+    image: "/assets/game/gfx/chort/chort_idle_anim_f1.png"
+  }
+  images {
+    image: "/assets/game/gfx/chort/chort_idle_anim_f2.png"
+  }
+  images {
+    image: "/assets/game/gfx/chort/chort_idle_anim_f3.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 12
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "chort_run"
+  images {
+    image: "/assets/game/gfx/chort/chort_run_anim_f0.png"
+  }
+  images {
+    image: "/assets/game/gfx/chort/chort_run_anim_f1.png"
+  }
+  images {
+    image: "/assets/game/gfx/chort/chort_run_anim_f2.png"
+  }
+  images {
+    image: "/assets/game/gfx/chort/chort_run_anim_f3.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 12
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "coin"
+  images {
+    image: "/assets/game/gfx/coin/coin_anim_f0.png"
+  }
+  images {
+    image: "/assets/game/gfx/coin/coin_anim_f1.png"
+  }
+  images {
+    image: "/assets/game/gfx/coin/coin_anim_f2.png"
+  }
+  images {
+    image: "/assets/game/gfx/coin/coin_anim_f3.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 12
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "wizard_idle"
+  images {
+    image: "/assets/game/gfx/wizard/wizzard_m_idle_anim_f0.png"
+  }
+  images {
+    image: "/assets/game/gfx/wizard/wizzard_m_idle_anim_f1.png"
+  }
+  images {
+    image: "/assets/game/gfx/wizard/wizzard_m_idle_anim_f2.png"
+  }
+  images {
+    image: "/assets/game/gfx/wizard/wizzard_m_idle_anim_f3.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 12
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "wizard_run"
+  images {
+    image: "/assets/game/gfx/wizard/wizzart_m_run_anim_f0.png"
+  }
+  images {
+    image: "/assets/game/gfx/wizard/wizzart_m_run_anim_f1.png"
+  }
+  images {
+    image: "/assets/game/gfx/wizard/wizzart_m_run_anim_f2.png"
+  }
+  images {
+    image: "/assets/game/gfx/wizard/wizzart_m_run_anim_f3.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 12
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+margin: 0
+extrude_borders: 2
+inner_padding: 0

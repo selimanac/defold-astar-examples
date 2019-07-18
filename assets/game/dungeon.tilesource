@@ -1,0 +1,10 @@
+image: "/assets/game/gfx/0x72_DungeonTilesetII_v1.2.png"
+tile_width: 16
+tile_height: 16
+tile_margin: 0
+tile_spacing: 0
+collision: ""
+material_tag: "tile"
+collision_groups: "default"
+extrude_borders: 2
+inner_padding: 0

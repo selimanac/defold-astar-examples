@@ -1,0 +1,29 @@
+local s = require("examples/scripts/lib/settings")
+
+local maxcost_txt = nil
+local minus_btn = nil
+local plus_btn = nil
+
+function init(self)
+    msg.post("#", "acquire_input_focus")
+    maxcost_txt = gui.get_node("max_cost_txt")
+    minus_btn = gui.get_node("minus_box")
+    plus_btn = gui.get_node("plus_box")
+    gui.set_text(maxcost_txt, s.max_cost)
+end
+
+local function update_cost(inc)
+    s.max_cost = s.max_cost + inc
+    msg.post(s.demon_url, "update_costs")
+    gui.set_text(maxcost_txt, s.max_cost)
+end
+
+function on_input(self, action_id, action)
+    if action_id == hash("click") and action.pressed then
+        if gui.pick_node(minus_btn, action.x, action.y) then
+            update_cost(-1)
+        elseif gui.pick_node(plus_btn, action.x, action.y) then
+            update_cost(1)
+        end
+    end
+end

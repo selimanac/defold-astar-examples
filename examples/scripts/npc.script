@@ -1,0 +1,131 @@
+go.property("tile_x", 0)
+go.property("tile_y", 0)
+go.property("type", 0)
+
+local s = require("examples/scripts/lib/settings")
+
+local nears = require("examples/scripts/nears")
+
+local start_id = 1
+local get_path
+local get_nears
+local function reset(self)
+    self.is_moving = false
+    self.target_id = start_id
+    self.path_size = 0
+    self.path = {}
+    self.target_position = vmath.vector3()
+    self.current_position = go.get_position(".")
+end
+
+local function move_the_devil(self)
+    if self.target_id < self.path_size then
+        self.target_id = self.target_id + 1
+    else
+        -- End of the path
+        self.tile_x = self.path[self.target_id].x
+        self.tile_y = self.path[self.target_id].y
+
+        reset(self)
+
+        timer.delay(0.4, false, get_path) -- restart
+        return
+    end
+
+    for i = 1, s.tiles_count do
+        if self.path[self.target_id].x == s.tiles[i].x and self.path[self.target_id].y == s.tiles[i].y then
+            self.current_position = self.target_position
+            self.target_position = s.tiles[i].position
+            self.normal = vmath.normalize(self.target_position - self.current_position)
+
+            if self.normal.x < 0 then
+                sprite.set_hflip("#sprite", true)
+            elseif self.normal.x > 0 then
+                sprite.set_hflip("#sprite", false)
+            end
+
+            go.animate(
+                ".",
+                "position",
+                go.PLAYBACK_ONCE_FORWARD,
+                self.target_position,
+                go.EASING_LINEAR,
+                0.5,
+                0,
+                move_the_devil
+            )
+        end
+    end
+end
+
+get_path = function(self, near_tile)
+
+    near_tile = near_tile or false
+
+    if near_tile == false then
+        self.target = s.targets[rnd.range(1, s.target_count)]
+    end
+
+    self.result, self.path_size, self.totalcost, self.path = astar.solve(self.tile_x, self.tile_y, self.target.x, self.target.y)
+
+    if self.result == astar.SOLVED then
+        if self.type == 1 then
+            self.totalcost = math.floor(self.totalcost)
+            label.set_text("#label", "COST: " .. self.totalcost)
+        end
+
+        move_the_devil(self)
+
+    elseif self.result == astar.NO_SOLUTION then
+        print("NO_SOLUTION")
+
+        self.near_result, self.near_size, self.nears = astar.solve_near(self.tile_x, self.tile_y, 10)
+
+        local temp_tiles = {}
+
+        for t = 1, s.target_count do
+            for n = 1, #self.nears do
+                if s.targets[t].x == self.nears[n].x and s.targets[t].y == self.nears[n].y then
+                    table.insert(temp_tiles, self.nears[n])
+                end
+            end
+        end
+
+        self.target = temp_tiles[rnd.range(1, #temp_tiles)]
+        get_path(self, true)
+
+    elseif self.result == astar.START_END_SAME then
+        get_path(self)
+        
+    end
+end
+
+get_nears = function(self)
+    self.near_result, self.near_size, self.nears = astar.solve_near(self.tile_x, self.tile_y, s.max_cost)
+    if self.near_result == astar.SOLVED then
+        nears:dispatch(self.nears)
+    elseif self.near_result == astar.NO_SOLUTION then
+        print("Something went wrong: NO_SOLUTION")
+    elseif self.near_result == astar.START_END_SAME then
+    end
+end
+
+function init(self)
+    reset(self)
+    if self.type ~= 2 then
+        get_path(self)
+    else
+        get_nears(self)
+    end
+end
+
+function on_message(self, message_id, message, sender)
+    if message_id == hash("update_costs") then
+        nears:clear()
+        if next(message) ~= nil then
+            self.tile_x = message.tile_x
+            self.tile_y = message.tile_y
+        end
+        get_nears(self)
+    end
+end
