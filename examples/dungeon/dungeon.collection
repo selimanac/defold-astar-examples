@@ -122,7 +122,7 @@ embedded_instances {
   id: "factories"
   data: "components {\n"
   "  id: \"zombie\"\n"
-  "  component: \"/assets/game/demon.factory\"\n"
+  "  component: \"/assets/factories/demon.factory\"\n"
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"

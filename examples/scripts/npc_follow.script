@@ -22,14 +22,6 @@ function init(self)
 	sprite.play_flipbook("#sprite", hash("down"))
 end
 
-function final(self)
-    -- Add finalization code here
-    -- Remove this function if not needed
-end
-
-function update(self, dt)
-end
-
 local function move_the_devil(self)
     if self.target_id < self.path_size then
         self.target_id = self.target_id + 1
@@ -40,7 +32,6 @@ local function move_the_devil(self)
 
         reset(self)
 
-       
         return
     end
 
@@ -49,7 +40,6 @@ local function move_the_devil(self)
 			self.target_position = s.tiles[i].position
 			self.normal = vmath.normalize(self.target_position - self.current_position)
 			self.current_position = self.target_position
-	
 	
 			local move_speed = 0.3
 			if self.normal.x == 0 and self.normal.y == -1 then
@@ -74,7 +64,6 @@ local function move_the_devil(self)
 				move_speed = 0.4
 			end
 
-          
             self.tile_x = self.path[self.target_id].x
             self.tile_y = self.path[self.target_id].y
             go.animate(
@@ -102,14 +91,4 @@ function on_message(self, message_id, message, sender)
             move_the_devil(self)
         end
     end
-end
-
-function on_input(self, action_id, action)
-    -- Add input-handling code here
-    -- Remove this function if not needed
-end
-
-function on_reload(self)
-    -- Add reload-handling code here
-    -- Remove this function if not needed
 end

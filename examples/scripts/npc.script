@@ -59,14 +59,14 @@ local function move_the_devil(self)
 end
 
 get_path = function(self, near_tile)
-
     near_tile = near_tile or false
 
     if near_tile == false then
         self.target = s.targets[rnd.range(1, s.target_count)]
     end
 
-    self.result, self.path_size, self.totalcost, self.path = astar.solve(self.tile_x, self.tile_y, self.target.x, self.target.y)
+    self.result, self.path_size, self.totalcost, self.path =
+        astar.solve(self.tile_x, self.tile_y, self.target.x, self.target.y)
 
     if self.result == astar.SOLVED then
         if self.type == 1 then
@@ -75,7 +75,6 @@ get_path = function(self, near_tile)
         end
 
         move_the_devil(self)
-
     elseif self.result == astar.NO_SOLUTION then
         print("NO_SOLUTION")
 
@@ -93,10 +92,8 @@ get_path = function(self, near_tile)
 
         self.target = temp_tiles[rnd.range(1, #temp_tiles)]
         get_path(self, true)
-
     elseif self.result == astar.START_END_SAME then
         get_path(self)
-        
     end
 end
 

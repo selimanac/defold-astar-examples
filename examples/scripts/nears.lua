@@ -4,7 +4,6 @@ nears = {}
 
 local tiles = {}
 function nears:dispatch(near_tiles)
-  
     for i = 1, #near_tiles do
         local pos_x, pos_y = utils:coords_to_screen(near_tiles[i].x, near_tiles[i].y)
 

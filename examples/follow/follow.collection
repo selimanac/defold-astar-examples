@@ -123,7 +123,7 @@ embedded_instances {
   data: "embedded_components {\n"
   "  id: \"npc_follow\"\n"
   "  type: \"factory\"\n"
-  "  data: \"prototype: \\\"/assets/game/npc_follow.go\\\"\\n"
+  "  data: \"prototype: \\\"/assets/game/go/npc_follow.go\\\"\\n"
   "load_dynamically: false\\n"
   "\"\n"
   "  position {\n"

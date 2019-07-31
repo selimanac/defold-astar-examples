@@ -15,7 +15,7 @@ function init(self)
     msg.post("#", "acquire_input_focus")
 
     cam_pos = go.get_position("/camera")
-    pprint(cam_pos)
+
     local levelx, levely, w, h = tilemap.get_bounds("/tilemap#bigmap")
     local tile, coord_x, coord_y = 0
     local pos = vmath.vector3()
@@ -37,6 +37,7 @@ function init(self)
             end
         end
     end
+
     s.demon_speed = 0.2
     s.target_count = #s.targets -- Total targets
     s.tiles_count = #s.tiles -- Total tiles
@@ -70,7 +71,6 @@ end
 function on_input(self, action_id, action)
 
     if action_id == hash("UP") and action.pressed then
-        print("Up")
         velocity.y = 1
     elseif action_id == hash("DOWN") and action.pressed then
         velocity.y = -1

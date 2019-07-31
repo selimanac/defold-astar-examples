@@ -95,7 +95,6 @@ end
 function on_input(self, action_id, action)
     if action_id == hash("click") and action.pressed then
         local tt = set_target(action)
-
         msg.post(target_npc, "find_target", {t = tt})
     end
 end

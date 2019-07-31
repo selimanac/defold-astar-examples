@@ -51,6 +51,7 @@ function init(self)
     astar.setup(s.mapWidth, s.mapHeight, s.direction, s.allocate, 100, s.cache)
     astar.set_map(s.world)
     astar.set_costs(costs)
+    print("CLICK ON SCREEN")
 end
 
 function on_input(self, action_id, action)

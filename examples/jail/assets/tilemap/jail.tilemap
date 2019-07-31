@@ -1,4 +1,4 @@
-tile_set: "/assets/game/dungeon.tilesource"
+tile_set: "/assets/game/tilesource/dungeon.tilesource"
 layers {
   id: "ground"
   z: 0.0

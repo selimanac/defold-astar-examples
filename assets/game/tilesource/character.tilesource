@@ -1,4 +1,4 @@
-image: "/assets/game/character.png"
+image: "/assets/game/gfx/character.png"
 tile_width: 32
 tile_height: 32
 tile_margin: 0

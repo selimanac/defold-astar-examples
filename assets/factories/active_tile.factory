@@ -1,0 +1,2 @@
+prototype: "/assets/game/go/active_tile.go"
+load_dynamically: false
