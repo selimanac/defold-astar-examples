@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "*.script": "lua",
+        "*.gui_script": "lua",
+        "*.render_script": "lua",
+        "*.fp": "glsl",
+        "array": "cpp",
+        "initializer_list": "cpp",
+        "string_view": "cpp",
+        "utility": "cpp"
+    }
+}

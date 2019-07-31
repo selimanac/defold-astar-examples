@@ -1,0 +1,81 @@
+image: "/assets/game/character.png"
+tile_width: 32
+tile_height: 32
+tile_margin: 0
+tile_spacing: 0
+collision: ""
+material_tag: "tile"
+animations {
+  id: "down"
+  start_tile: 1
+  end_tile: 4
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "down_left"
+  start_tile: 5
+  end_tile: 8
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "down_right"
+  start_tile: 9
+  end_tile: 12
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "left"
+  start_tile: 13
+  end_tile: 16
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "right"
+  start_tile: 17
+  end_tile: 20
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "up"
+  start_tile: 21
+  end_tile: 24
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "up_left"
+  start_tile: 25
+  end_tile: 28
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "up_right"
+  start_tile: 29
+  end_tile: 32
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 8
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+extrude_borders: 2
+inner_padding: 0

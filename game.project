@@ -3,7 +3,7 @@ title = defold-astar-examples
 dependencies = https://github.com/britzl/defold-orthographic/archive/master.zip,https://github.com/selimanac/defold-random/archive/master.zip
 
 [bootstrap]
-main_collection = /examples/costs/costs.collectionc
+main_collection = /examples/follow/follow.collectionc
 render = /orthographic/render/orthographic.renderc
 
 [input]

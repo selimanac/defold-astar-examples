@@ -43,7 +43,7 @@ function init(self)
 
     s.mapWidth = w
     s.mapHeight = h
-    s.allocate = w * h
+    s.allocate = 2048
     local costs = {
         [130] = {
             1.0,
@@ -57,7 +57,7 @@ function init(self)
         }
     }
 
-    astar.setup(s.mapWidth, s.mapHeight, s.direction, s.allocate, s.typical_adjacent, s.cache)
+    astar.setup(s.mapWidth, s.mapHeight, s.direction, 100, s.typical_adjacent, s.cache)
     astar.set_map(s.world)
     astar.set_costs(costs)
 end

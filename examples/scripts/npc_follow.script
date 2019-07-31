@@ -1,0 +1,115 @@
+go.property("tile_x", 0)
+go.property("tile_y", 0)
+go.property("type", 0)
+
+local s = require("examples/scripts/lib/settings")
+local start_id = 1
+
+local function reset(self)
+	sprite.play_flipbook("#sprite", hash("down"))
+    self.is_moving = false
+    self.target_id = start_id
+    self.path_size = 0
+    self.path = {}
+    self.target_position = vmath.vector3()
+    self.current_position = go.get_position(".")
+end
+
+function init(self)
+    self.target_id = start_id
+    self.target_position = vmath.vector3()
+	self.current_position = go.get_position(".")
+	sprite.play_flipbook("#sprite", hash("down"))
+end
+
+function final(self)
+    -- Add finalization code here
+    -- Remove this function if not needed
+end
+
+function update(self, dt)
+end
+
+local function move_the_devil(self)
+    if self.target_id < self.path_size then
+        self.target_id = self.target_id + 1
+    else
+        -- End of the path
+        self.tile_x = self.path[self.target_id].x
+        self.tile_y = self.path[self.target_id].y
+
+        reset(self)
+
+       
+        return
+    end
+
+    for i = 1, s.tiles_count do
+        if self.path[self.target_id].x == s.tiles[i].x and self.path[self.target_id].y == s.tiles[i].y then
+			self.target_position = s.tiles[i].position
+			self.normal = vmath.normalize(self.target_position - self.current_position)
+			self.current_position = self.target_position
+	
+	
+			local move_speed = 0.3
+			if self.normal.x == 0 and self.normal.y == -1 then
+				sprite.play_flipbook("#sprite", hash("down"))
+			elseif self.normal.x == 1 and self.normal.y == 0 then
+				sprite.play_flipbook("#sprite", hash("right"))
+			elseif self.normal.x == -1 and self.normal.y == 0 then
+				sprite.play_flipbook("#sprite", hash("left"))
+			elseif self.normal.x == 0 and self.normal.y == 1 then
+				sprite.play_flipbook("#sprite", hash("up"))
+			elseif self.normal.x > 0 and  self.normal.y > 0 then
+				sprite.play_flipbook("#sprite", hash("up_right"))
+				move_speed = 0.4
+			elseif self.normal.x < 0 and  self.normal.y > 0 then
+				sprite.play_flipbook("#sprite", hash("up_left"))
+				move_speed = 0.4
+			elseif self.normal.x > 0 and  self.normal.y < 0 then
+				sprite.play_flipbook("#sprite", hash("down_right"))
+				move_speed = 0.4
+			elseif self.normal.x < 0 and  self.normal.y < 0 then
+				sprite.play_flipbook("#sprite", hash("down_left"))
+				move_speed = 0.4
+			end
+
+          
+            self.tile_x = self.path[self.target_id].x
+            self.tile_y = self.path[self.target_id].y
+            go.animate(
+                ".",
+                "position",
+                go.PLAYBACK_ONCE_FORWARD,
+                self.target_position,
+                go.EASING_LINEAR,
+                move_speed,
+                0,
+                move_the_devil
+            )
+        end
+    end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("find_target") then
+			reset(self)
+			go.cancel_animations(".", "position")
+        self.result, self.path_size, self.totalcost, self.path =
+            astar.solve(self.tile_x, self.tile_y, message.t.x, message.t.y)
+		if self.result == astar.SOLVED then
+			
+            move_the_devil(self)
+        end
+    end
+end
+
+function on_input(self, action_id, action)
+    -- Add input-handling code here
+    -- Remove this function if not needed
+end
+
+function on_reload(self)
+    -- Add reload-handling code here
+    -- Remove this function if not needed
+end

@@ -3,7 +3,8 @@
 
 #include <Map.hpp>
 #include <dmsdk/sdk.h>
-
+#include <stdio.h>
+#include <cstdlib>
 
 Map map;
 int x, y;
@@ -156,7 +157,7 @@ static int astar_solvenear(lua_State *L)
 
     pathResult = map.SolveNear(maxCost);
 
-    size = map.near.size();
+    size = map.nears.size();
 
     lua_pushinteger(L, pathResult);
     lua_pushinteger(L, size);
@@ -168,7 +169,7 @@ static int astar_solvenear(lua_State *L)
         int newTable = lua_gettop(L);
         for (int i = 0; i < size; i++)
         {
-            map.NodeToXY(map.near[i].state, &x, &y);
+            map.NodeToXY(map.nears[i].state, &x, &y);
 
             lua_createtable(L, 2, 0);
             lua_pushstring(L, "x");
@@ -178,7 +179,7 @@ static int astar_solvenear(lua_State *L)
             lua_pushinteger(L, y);
             lua_settable(L, -3);
             lua_pushstring(L, "cost");
-            lua_pushnumber(L, map.near[i].cost);
+            lua_pushnumber(L, map.nears[i].cost);
             lua_settable(L, -3);
 
             lua_rawseti(L, newTable, i + 1);

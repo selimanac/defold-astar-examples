@@ -92,7 +92,9 @@ void Map::AdjacentCost( void* node, MPVector<StateCost > *neighbors )
             if ( pass == Costs[a].tile_id )
             {
                 if (WorldAt( nx, ny ) >= 0) {
-                    nodeCost = { XYToNode( nx, ny ), Costs[a].costs[b] };
+                 //   nodeCost = { XYToNode( nx, ny ), Costs[a].costs[b] };
+                    nodeCost.state = XYToNode( nx, ny );
+                    nodeCost.cost = Costs[a].costs[b];
                     neighbors->push_back( nodeCost );
                 }
             }
@@ -150,7 +152,7 @@ int Map::SolveNear(float maxCost){
         return result;
     }
     
-    result = pather->SolveForNearStates(XYToNode(pathFrom.x, pathFrom.y), &near, maxCost);
+    result = pather->SolveForNearStates(XYToNode(pathFrom.x, pathFrom.y), &nears, maxCost);
     
     return result;
 }

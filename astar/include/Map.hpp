@@ -53,7 +53,7 @@ public:
     Position pathFrom = {0,0};
     Position pathTo = {5,5};
     MPVector<void*> path;
-    MPVector<StateCost> near;
+    MPVector<StateCost> nears;
     Tile* Costs;
     
     Map(){};

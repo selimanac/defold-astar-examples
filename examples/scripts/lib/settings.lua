@@ -15,10 +15,12 @@ settings.tiles = {}
 settings.targets = {}
 settings.target_count = 0
 settings.tiles_count = 0
+settings.target = {x = 0, y = 0}
 
 settings.demon_speed = 0.5
 settings.max_cost = 3
 settings.demon = hash("")
 settings.demon_url = msg.url()
+
 
 return settings
